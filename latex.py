@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 
+plt.rcParams['figure.facecolor'] = 'black'
+plt.rcParams['text.color'] = 'white'
+
 
 def plt_tex(text):
     text = cleaned(text)

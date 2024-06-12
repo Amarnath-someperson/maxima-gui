@@ -1,8 +1,8 @@
-import customtkinter as ctk
 import tkinter
+import customtkinter as ctk
 from PIL import Image
 from customtkinter.windows.ctk_tk import CTk
-import latex
+import latex  # latex.py
 
 
 class App(ctk.CTk):
@@ -40,7 +40,7 @@ class App(ctk.CTk):
         input_heading.pack(pady=10, padx=10)
 
         input_help = ctk.CTkLabel(master=self.in_frame, justify=ctk.LEFT,
-                                  text="If the input doesn't look quite right, use ().\n As of now, only mathjax/latex commands work.")
+                                  text="If the input doesn't look quite right, use ().\n As of now, only matplotlib-latex commands work.")
         input_help.pack(pady=10, padx=10, anchor="w")
 
         self.textbox = ctk.CTkEntry(master=self.in_frame, width=300)
@@ -53,7 +53,7 @@ class App(ctk.CTk):
         self.image_label.pack()
 
         output_heading = ctk.CTkLabel(
-            master=self.out_frame, justify=ctk.LEFT, text="OUPUT", font=("serif", 40, "bold"))
+            master=self.out_frame, justify=ctk.LEFT, text="OUTPUT", font=("serif", 40, "bold"))
         output_heading.pack(pady=10, padx=10)
 
         footer_frame = ctk.CTkFrame(master=self)

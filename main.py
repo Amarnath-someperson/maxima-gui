@@ -5,6 +5,7 @@ import latex  # latex.py
 
 
 class App(ctk.CTk):
+    # pylint: disable=too-many-instance-attributes
     def __init__(self):
         super().__init__()
         ctk.set_ctk_parent_class(tkinter.Tk)
@@ -79,7 +80,7 @@ class App(ctk.CTk):
             expression = self.textbox.get()
             print(f"\033[0;35m>> \033[0;32mINPUT : {expression}\033[0;0m")
             print(f"\033[0;35m>> \033[0;34mEVENT : {event}\n\033[0;0m")
-            latex.plt_tex(str(expression))
+            latex.plt_result(str(expression), tex=True)
             self.image = ctk.CTkImage(Image.open(
                 'input.png'), size=(self.in_frame.winfo_width()-20, 200))
             self.image_label.configure(image=self.image)
@@ -87,7 +88,7 @@ class App(ctk.CTk):
                 text="No errors detected.", text_color='green')
         except Exception as e:
             print(
-                f"\033[0;36m{'='*20} EXCEPTION {'='*20}\n{e}\n\n{'='*20} EXCEPTION {'='*20}\n\033[0;0m")
+                f"\033[0;36m{'='*20} EXCEPTION BEGIN {'='*20}\n{e}\n\n{'='*20}  EXCEPTION END  {'='*20}\n\033[0;0m")
             self.report.configure(
                 text="Errors found. Check terminal for log.", text_color='red')
 

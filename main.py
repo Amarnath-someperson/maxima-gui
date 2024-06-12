@@ -1,7 +1,6 @@
 import tkinter
 import customtkinter as ctk
 from PIL import Image
-from customtkinter.windows.ctk_tk import CTk
 import latex  # latex.py
 
 
@@ -52,6 +51,10 @@ class App(ctk.CTk):
             master=self.in_frame, image=self.image, text="")
         self.image_label.pack()
 
+        self.report = ctk.CTkLabel(
+            master=self.in_frame, text="No error logs (yet).")
+        self.report.pack()
+
         output_heading = ctk.CTkLabel(
             master=self.out_frame, justify=ctk.LEFT, text="OUTPUT", font=("serif", 40, "bold"))
         output_heading.pack(pady=10, padx=10)
@@ -72,12 +75,21 @@ class App(ctk.CTk):
     # ==========================================
 
     def on_press(self, event):
-        expression = self.textbox.get()
-        print(expression)
-        latex.plt_tex(str(expression))
-        self.image = ctk.CTkImage(Image.open(
-            'input.png'), size=(self.in_frame.winfo_width()-20, 200))
-        self.image_label.configure(image=self.image)
+        try:
+            expression = self.textbox.get()
+            print(f"\033[0;35m>> \033[0;32mINPUT : {expression}\033[0;0m")
+            print(f"\033[0;35m>> \033[0;34mEVENT : {event}\n\033[0;0m")
+            latex.plt_tex(str(expression))
+            self.image = ctk.CTkImage(Image.open(
+                'input.png'), size=(self.in_frame.winfo_width()-20, 200))
+            self.image_label.configure(image=self.image)
+            self.report.configure(
+                text="No errors detected.", text_color='green')
+        except Exception as e:
+            print(
+                f"\033[0;36m{'='*20} EXCEPTION {'='*20}\n{e}\n{'='*20} EXCEPTION {'='*20}\n\033[0;0m")
+            self.report.configure(
+                text="Errors found. Check terminal for log.", text_color='red')
 
     # ==========================================
     # change theme

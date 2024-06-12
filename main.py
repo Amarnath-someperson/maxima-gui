@@ -87,7 +87,7 @@ class App(ctk.CTk):
                 text="No errors detected.", text_color='green')
         except Exception as e:
             print(
-                f"\033[0;36m{'='*20} EXCEPTION {'='*20}\n{e}\n{'='*20} EXCEPTION {'='*20}\n\033[0;0m")
+                f"\033[0;36m{'='*20} EXCEPTION {'='*20}\n{e}\n\n{'='*20} EXCEPTION {'='*20}\n\033[0;0m")
             self.report.configure(
                 text="Errors found. Check terminal for log.", text_color='red')
 

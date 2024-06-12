@@ -13,7 +13,7 @@ def plt_tex(text):
 def cleaned(x):
     x = x.replace('(', '{').replace(')', '}')
     return x
-    pass  # in developments
+    pass  # in development
 
 
 def default_tex():
